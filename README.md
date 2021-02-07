@@ -56,7 +56,7 @@ apk_builder.build_app_bundle(project_path='/path/to/android/project',
 ```
 
 ## Advanced Usage
-You can save your Key Store properties in a file, to avoid supplying them again in each apk build.
+You can save your Key Store properties in a file, to avoid supplying them again with each binary build.
 
 Todo so, create a json file (or copy this [sign_in_example.json](os_android_apk_builder/examples/properties_example.json) file): 
 ```json

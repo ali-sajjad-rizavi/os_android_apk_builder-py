@@ -5,7 +5,7 @@ setup(
     packages=['os_android_apk_builder',
               'os_android_apk_builder.bp',
               'os_android_apk_builder.objs'],
-    version='1.2',  # Start with a small number and increase it with every change you make
+    version='1.21',  # Start with a small number and increase it with every change you make
     license='MIT',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
     description='This module will create an APK/App Bundle programmatically (dynamically), without Android Studio.',  # Give a short description about your library
     author='Oz Shabat',  # Type in your name
