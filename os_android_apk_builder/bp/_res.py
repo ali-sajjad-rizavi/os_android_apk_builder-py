@@ -31,10 +31,6 @@ KEY_KEY_PASSWORD = 'keyPassword'
 KEY_V1_SIGNING_ENABLED = 'v1SigningEnabled'
 KEY_V2_SIGNING_ENABLED = 'v2SigningEnabled'
 
-# version
-VERSION_NAME = 'versionName'
-VERSION_CODE = 'versionCode'
-
 APK = 'apk'
 APP_BUNDLE = 'app bundle'
 

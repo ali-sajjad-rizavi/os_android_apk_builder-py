@@ -1,13 +1,12 @@
 # system
 import os
-import re
 import fileinput
 import sys
 
 # project
-from os_android_apk_builder.objs.VersionProperties import VersionProperties
 from os_android_apk_builder.objs.KeyStoreProperties import KeyStoreProperties
 from os_android_apk_builder.bp import _res
+from os_android_app_version_changer import version_changer
 
 # os
 from os_file_handler import file_handler as fh
@@ -27,29 +26,12 @@ def check_if_release_enabled(path):
     return not fh.is_line_exists_in_file(build_gradle_file, release_command)
 
 
-# will prepare the build gradle file for the current release. This include (but not limited to) change the version code and name, setting the signinConfig, and more
-def prepare_build_gradle_for_release(project_path, key_store_properties, version_properties, append_signin):
-    build_gradle_file = os.path.join(project_path, 'app', 'build.gradle')
-    version_code_set = False
-    version_name_set = False
+def _set_sign_in_props(build_gradle_file, key_store_properties, append_signin):
     on_android_par = False
     on_build_types_par = False
     added_signin = False
 
     for line in fileinput.input(build_gradle_file, inplace=1):
-        # set the right version name or version code, if required
-        if not version_code_set and version_properties.new_version_code != VersionProperties.KEEP_OLD_VERSION and _res.VERSION_CODE in line:
-            line = change_version_props(line, version_properties.new_version_code, _res.VERSION_CODE)
-            sys.stdout.write(line)
-            version_code_set = True
-            continue
-
-        elif not version_name_set and version_properties.new_version_name != VersionProperties.KEEP_OLD_VERSION and _res.VERSION_NAME in line:
-            line = change_version_props(line, version_properties.new_version_name, _res.VERSION_NAME)
-            sys.stdout.write(line)
-            version_name_set = True
-            continue
-
         sys.stdout.write(line)
 
         if not append_signin:
@@ -87,35 +69,17 @@ def prepare_build_gradle_for_release(project_path, key_store_properties, version
                     continue
 
 
+# will prepare the build gradle file for the current release. This include (but not limited to) change the version code and name, setting the signinConfig, and more
+def prepare_build_gradle_for_release(project_path, key_store_properties, version_properties, append_signin):
+    build_gradle_file = os.path.join(project_path, 'app', 'build.gradle')
+    _set_sign_in_props(build_gradle_file, key_store_properties, append_signin)
+    version_changer.change_version(project_path, version_properties)
+    
+
 # will append the lines of the signin file, one by one, with the user sign in props
 def append_signin_file_lines(key_store_properties: KeyStoreProperties):
     for key, val in key_store_properties.build_signin_dict().items():
         sys.stdout.write(f'\t\t\t{key} {val}\n')
-
-
-# will set and get the current version of the project
-def change_version_props(line, new_version, version_name):
-    # set the right version name or version code, if required
-    line_without_version = re.sub('[.0-9"+]', '', line).replace('\n', '').rstrip()
-
-    if new_version != VersionProperties.KEEP_OLD_VERSION and version_name in line:
-
-        # if raise version by one
-        if new_version == VersionProperties.RAISE_VERSION_BY_ONE:
-            curr_version = re.sub('[a-zA-Z" +]', '', line).replace('\n', '')
-            if '.' not in curr_version:
-                curr_version = int(curr_version) + 1
-            else:
-                version = curr_version.split('.')
-                version[-1] = str(int(version[-1]) + 1)
-                curr_version = '.'.join(version)
-            if version_name == _res.VERSION_NAME:
-                curr_version = f'"{curr_version}"'
-            return f'{line_without_version} {curr_version}\n'
-        else:
-            if version_name == _res.VERSION_NAME:
-                new_version = f'"{new_version}"'
-            return f'{line_without_version} {new_version}\n'
 
 
 # will obtain the current version code from the project

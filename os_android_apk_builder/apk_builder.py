@@ -3,7 +3,7 @@ import os
 from os_android_apk_builder.bp import _general_utils
 import os_tools.logger_handler as lh
 from os_android_apk_builder.objs.KeyStoreProperties import KeyStoreProperties
-from os_android_apk_builder.objs.VersionProperties import VersionProperties
+from os_android_app_version_changer.objs.VersionProperties import VersionProperties
 from os_file_handler import file_handler as fh
 from os_android_apk_builder.bp import _build_gradle_utils
 from os_android_apk_builder.bp import _res

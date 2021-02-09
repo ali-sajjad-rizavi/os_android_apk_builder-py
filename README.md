@@ -14,10 +14,9 @@ pip install os-android-apk-builder
     
 First, define your KeyStore and version properties:
 
-
 ```python
 from os_android_apk_builder.objs.KeyStoreProperties import KeyStoreProperties
-from os_android_apk_builder.objs.VersionProperties import VersionProperties
+from os_android_app_version_changer.objs.VersionProperties import VersionProperties
 
 
 # set your KeyStore properties
@@ -32,6 +31,7 @@ key_store_props = KeyStoreProperties(key_store_file_path='/path/to/keystore/file
 version_props = VersionProperties(new_version_code=VersionProperties.RAISE_VERSION_BY_ONE,
 new_version_name="1.0.3")
 ```
+NOTICE: each of the version properties can also hold, apart from specific versions, ```VersionProperties.KEEP_OLD_VERSION``` or ```VersionProperties.RAISE_VERSION_BY_ONE```.
 
 Now, generate an apk or app bundle below:
     
