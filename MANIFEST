@@ -7,4 +7,3 @@ os_android_apk_builder/bp/_build_gradle_utils.py
 os_android_apk_builder/bp/_general_utils.py
 os_android_apk_builder/bp/_res.py
 os_android_apk_builder/objs/KeyStoreProperties.py
-os_android_apk_builder/objs/VersionProperties.py

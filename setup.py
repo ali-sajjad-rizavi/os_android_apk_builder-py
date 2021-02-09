@@ -5,14 +5,14 @@ setup(
     packages=['os_android_apk_builder',
               'os_android_apk_builder.bp',
               'os_android_apk_builder.objs'],
-    version='1.21',  # Start with a small number and increase it with every change you make
+    version='1.25',  # Start with a small number and increase it with every change you make
     license='MIT',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
     description='This module will create an APK/App Bundle programmatically (dynamically), without Android Studio.',  # Give a short description about your library
     author='Oz Shabat',  # Type in your name
     author_email='admin@os-apps.com',  # Type in your E-Mail
     url='https://github.com/osfunapps/os_android_apk_builder-py',  # Provide either the link to your github or to your website
     keywords=['python', 'osfunapps', 'apk', 'android', 'automation', 'release', 'assemble-release', 'create', 'pre-publish', 'app_bundle'],  # Keywords that define your package best
-    install_requires=["os_tools", "os_file_handler", "os_android_app_version_changer"],
+    install_requires=["os_tools", "os_file_handler", "os_android_app_version_changer", "os_file_stream_handler"],
     classifiers=[
         'Development Status :: 5 - Production/Stable',  # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
 

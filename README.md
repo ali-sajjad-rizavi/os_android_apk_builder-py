@@ -82,6 +82,10 @@ Furthermore, if the gradle wrapper isn't good enough, you can run the gradle fro
 
 (you can write just 'gradle' if it's already recognized by your environment variables).
 
+## Links
+* If you all about automation, why use Android Studio?:  
+  [os-publisher](https://github.com/osfunapps/os-android_apk-google-play-publisher-py) Will publish your apk/app bundle to the store in a jiffy
+* More Android and iOS automation tools can be found in [my profile](https://github.com/osfunapps)
 
 ## Licence
 MIT

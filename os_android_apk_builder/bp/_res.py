@@ -9,6 +9,8 @@ REL_PATH_APK_RELEASE = os.path.join(OUTPUTS_PATH, 'apk', 'release', 'app-release
 EXT_APK = '.apk'
 EXT_APP_BUNDLE = '.aab'
 
+# version
+VERSION_CODE = "versionCode"
 # cmd commands
 COMMAND_APK_GRADLE_RELEASE = "assembleRelease"
 COMMAND_APP_BUNDLE_GRADLE_RELEASE = ":app:bundle"
