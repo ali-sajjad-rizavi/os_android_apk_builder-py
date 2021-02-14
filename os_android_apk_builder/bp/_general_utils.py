@@ -14,4 +14,3 @@ def release_binary(release_command, project_path, gradle_path):
     gradle_command = f'{gradle_path} {release_command}'
     full_command = f'{cd_command} && {gradle_command}'
     os.system(full_command)
-    print(gradle_command)
